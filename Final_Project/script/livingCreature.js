@@ -4,6 +4,8 @@ class LivingCreature {
         this.y = y;
         this.multiply = 0;
 
+        this.bombCount = 0;
+
         this.eaterEnergy = 8;
         this.planterEnergy = 10;
         this.omnivorousEnergy = 35;

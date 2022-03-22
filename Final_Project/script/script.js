@@ -134,6 +134,7 @@ function draw() {
             else if(matrix[y][x] == 0) {
                 fill("gray")
             }
+            noStroke();
             rect(x * block, y * block, block, block);
         }
     }
