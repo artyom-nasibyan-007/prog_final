@@ -1,0 +1,160 @@
+*,
+*::before,
+*::after {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+canvas {
+    margin: auto;
+    position:absolute;
+    left: 10%;
+    top: 50px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.game-info {
+    background-color: rgba(158, 226, 0, 0.794);
+    border-radius: 15px;
+    border: 1.5px solid black;
+    width: 400px;
+    height: 400px;
+    position:absolute;
+    left: 50%;
+    top: 70px;
+    padding: 30px 50px;
+}
+
+.box {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 19px 6px rgba(0,0,0,0.3);
+    margin: 10px 0 0 0;
+}
+
+.box.empty::after,.box.grass::after,
+.box.eater::after,.box.predator::after,
+.box.planter::after,.box.omnivorous::after,
+.box.hole::after,.box.helper::after,
+.box.helperBomb::after {
+    content: '';
+    position: absolute;
+    left: 90px;
+    width: 0px;
+    height: 35px;
+    background-color: inherit;
+    transition: 0.7s;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.box.empty:hover::after,.box.grass:hover::after,
+.box.eater:hover::after,.box.predator:hover::after,
+.box.planter:hover::after,.box.omnivorous:hover::after,
+.box.hole:hover::after,.box.helper:hover::after,
+.box.helperBomb:hover::after {
+    content: '';
+    position: absolute;
+    left: 90px;
+    width: auto;
+    max-width: 350px;
+    border: 1px solid white;
+    height: 35px;
+    padding: 2.5px 10px;
+    display: grid;
+    align-items: center;
+    background-color: inherit;
+}
+
+.box.empty {
+    background-color: gray;
+}
+
+.box.empty:hover:after {
+    content: 'Empty box over which all characters can move';
+    overflow: hidden;
+}
+
+.box.grass {
+    background-color: green;
+}
+
+.box.grass:hover:after {
+    content: 'Green box (Grass) that multiplies at some interval';
+}
+
+
+
+.box.eater {
+    background-color: yellow;
+}
+
+.box.eater:hover::after {
+    content: 'Yellow box (Eater) that multiplies at some intervals and eats green boxes';
+}
+
+
+
+.box.predator {
+    background-color: black;
+}
+
+.box.predator:hover::after {
+    content: '';
+}
+
+
+
+.box.planter {
+    background-color: red;
+}
+
+.box.planter:hover::after {
+    content: '';
+}
+
+
+
+.box.omnivorous {
+    background-color: blue;
+}
+
+.box.omnivorous:hover::after {
+    content: '';
+}
+
+
+
+.box.hole {
+    background-color: #555555;
+}
+
+.box.hole:hover::after {
+    content: '';
+}
+
+
+
+.box.helper {
+    background-color: orange;
+}
+
+.box.helper:hover::after {
+    content: '';
+}
+
+
+
+.box.helperBomb {
+    background-color: yellowgreen;
+}
+
+.box.helperBomb:hover::after {
+    content: '';
+}
+
+
+body {
+    background-color: rgba(0, 162, 190, 0.5);
+}
