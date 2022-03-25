@@ -4,11 +4,21 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
-  }
+    "express": "^4.17.3",
+    "socket.io": "^4.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artyom-nasibyan-007/prog_final.git"
+  },
+  "bugs": {
+    "url": "https://github.com/artyom-nasibyan-007/prog_final/issues"
+  },
+  "homepage": "https://github.com/artyom-nasibyan-007/prog_final#readme"
 }
