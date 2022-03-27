@@ -1,4 +1,7 @@
-class Predator extends LivingCreature {
+var LivingCreature = require("./livingCreature");
+var random = require("./random");
+
+module.exports = class Predator extends LivingCreature {
 
     getNewCoordinates() {
         this.directions = [

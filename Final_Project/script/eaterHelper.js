@@ -1,4 +1,9 @@
-class EaterHelper extends LivingCreature{
+var 
+LivingCreature = require("./livingCreature"),
+random = require("./random.js"),
+HelperBomb = require("./helperBomb");
+
+module.exports = class EaterHelper extends LivingCreature{
     
         getNewCoordinates() {
             this.directions = [

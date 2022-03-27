@@ -1,4 +1,4 @@
-class LivingCreature {
+module.exports = class LivingCreature {
     constructor(x, y){
         this.x = x;
         this.y = y;
@@ -9,7 +9,7 @@ class LivingCreature {
         this.eaterEnergy = 8;
         this.planterEnergy = 10;
         this.omnivorousEnergy = 35;
-        this.predatorEnergy = 125;
+        this.predatorEnergy = 60;
         this.helperEnergy = 60;
 
         this.directions = [

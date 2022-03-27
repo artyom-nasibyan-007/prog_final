@@ -1,4 +1,9 @@
-class GrassPlanter extends LivingCreature{
+var 
+LivingCreature = require("./livingCreature"),
+random = require("./random"),
+Grass = require("./grass");
+
+module.exports = class GrassPlanter extends LivingCreature{
 
     getNewCoordinates() {
         this.directions = [

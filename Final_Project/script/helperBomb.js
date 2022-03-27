@@ -1,4 +1,6 @@
-class HelperBomb {
+let GrassEater = require("./grassEater");
+
+module.exports = class HelperBomb {
     constructor(x,y) {
         this.x = x;
         this.y = y;
@@ -75,7 +77,7 @@ class HelperBomb {
 
                 this.die();
             }
-        },3000)
+        },100)
         this.energy = 20;
     }
 

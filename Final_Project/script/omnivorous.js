@@ -1,4 +1,9 @@
-class Omnivorous extends LivingCreature {
+var 
+LivingCreature = require("./livingCreature"),
+random = require("./random"),
+Hole = require("./hole");
+
+module.exports = class Omnivorous extends LivingCreature {
 
     getNewCoordinates() {
         this.directions = [
