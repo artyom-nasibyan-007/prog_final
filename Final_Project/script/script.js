@@ -116,10 +116,41 @@ function openModalWindow(bgcolor,personname,personinfo) {
 
 }
 
-document.querySelector(".x").addEventListener('click',() => {
+document.getElementById("infoModalX").addEventListener('click',() => {
     let 
         infoWindow = document.querySelector(".information-modal-window");
 
     infoWindow.style.opacity = "0%";
     infoWindow.style.visibility = "hidden";
+})
+
+document.getElementById("keyboardModalX").addEventListener('click',() => {
+    let 
+        infoWindow = document.querySelector(".keyboard-spawning-modal-window");
+
+    infoWindow.style.opacity = "0%";
+    infoWindow.style.visibility = "hidden";
+})
+
+let elem = document.querySelector(".key");
+
+elem.addEventListener('click',() => {
+    elem.style.width = "calc(100% - 5px)";
+    elem.style.height = "calc(100% - 5px)";
+    elem.disabled = true;
+
+    setTimeout(function(){     
+        elem.style.width = "calc(100% - 10px)";
+        elem.style.height = "calc(100% - 10px)"; 
+        elem.disabled = false;
+    },1000)
+})
+
+let modal2btn = document.getElementById("showEventKeyCodes");
+
+modal2btn.addEventListener("click",() => {
+    let elem = document.querySelector(".keyboard-spawning-modal-window");
+
+    elem.style.visibility = "visible";
+    elem.style.opacity = "100%";
 })

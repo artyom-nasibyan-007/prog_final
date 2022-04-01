@@ -27,7 +27,7 @@ module.exports = class GrassPlanter extends LivingCreature{
                 x = this.directions[i][0],
                 y = this.directions[i][1];
 
-            if (matrix[y][x] == 0 || matrix[y][x] == 1 || matrix[y][x] == 2 || matrix[y][x] == 3 || matrix[y][x] == 5) {
+            if (matrix[y][x] == 0 || matrix[y][x] == 2 || matrix[y][x] == 3 || matrix[y][x] == 5 || matrix[y][x] == 8) {
                 found.push(this.directions[i]);
             }
         }

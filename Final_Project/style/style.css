@@ -10,11 +10,24 @@
     box-sizing: border-box;
     padding: 15px 40px;
     height: 500px;
+    border-radius: 10px;
+    margin-left: 25px;
     background-color: white;
+}
+
+.btn-info {
+    width: 150px;
+    display: grid;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 15px 0;
+    height: 500px;
+    border-radius: 10px;
 }
 
 canvas {
     display: block;
+    border-radius: 10px;
     margin-left: 25px;
 }
 
@@ -92,6 +105,7 @@ body {
 :root {
     --w:700px;
     --h:auto;
+    --shortcutH:500px;
 }
 
 .information-modal-window {
@@ -155,4 +169,102 @@ body {
     display: grid;
     align-items: center;
     justify-content: center;
+}
+
+.keyboard-spawning-modal-window {
+    position: absolute;
+    left: calc(50% - var(--w) / 2);
+    top: calc(50% - var(--shortcutH) / 2);
+    width: var(--w);
+    height: var(--shortcutH);
+    background-color: black;
+    box-sizing: border-box;
+    padding: 50px 20px 50px 50px;
+    transition: 1s;
+    font-family: 'Arial';
+    color: white;
+    border-radius: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    opacity: 0%; /* 100% */
+    visibility: hidden; /* visible */
+    border: 1px solid white;
+}
+
+.keyboard-spawning-modal-window::-webkit-scrollbar {
+    width: 10px;
+}
+
+.keyboard-spawning-modal-window::-webkit-scrollbar-thumb {
+    background-color: rgb(121, 121, 121);;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.keyboard-spawning-modal-window::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(181, 181, 181);
+}
+
+.keyboard-spawning-modal-window::-webkit-scrollbar-track {
+    background-color: rgb(40, 40, 40);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.key-class {
+    width: 60px;
+    height: 60px;
+    background-color: gray;
+    box-sizing: border-box;
+    display: grid;
+}
+
+.key {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    background-color: rgb(200, 200, 200);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 40px;
+    font-family: 'Arial';
+    cursor: pointer;
+    border: none;
+}
+
+.row-btn {
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.row-btn span {
+    font-size: 35px;
+    padding: 0 10px;
+    color: white;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+}
+
+.column .row-btn:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.btn-info button {
+    height: max-content;
+    width: 100%;
+    border: none;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 2.5px 5px;
+    font-size: 25px;
+    border-radius: 10px;
 }
