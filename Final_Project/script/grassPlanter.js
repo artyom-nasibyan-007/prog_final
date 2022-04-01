@@ -19,9 +19,8 @@ module.exports = class GrassPlanter extends LivingCreature{
     }
 
     chooseAllCells() {
-        
-
         let found = [];
+        
         for (let i = 0; i < this.directions.length; i++) {
             this.getNewCoordinates();
             let

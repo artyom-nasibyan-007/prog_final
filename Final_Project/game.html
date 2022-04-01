@@ -12,19 +12,29 @@
         <div class="game-info">
             <h1 class="game-info-title"></h1>
 
-            <div class="row"> <div class="box empty"></div> <span>Void Count: <span id="voidCount"></span> </span> </div>
-            <div class="row"> <div class="box grass"></div> <span>Grass Count: <span id="grassCount"></span> </span> </div>
-            <div class="row"> <div class="box eater"></div> <span>Eater Count: <span id="eaterCount"></span> </span> </div>
-            <div class="row"> <div class="box predator"></div> <span>Predator Count: <span id="predatorCount"></span> </span> </div>
-            <div class="row"> <div class="box planter"></div> <span>Planter Count: <span id="planterCount"></span> </span> </div>
-            <div class="row"> <div class="box omnivorous"></div> <span>Omnivorous Count: <span id="omnivorousCount"></span> </span> </div>
-            <div class="row"> <div class="box hole"></div> <span>Hole Count: <span id="holeCount"></span> </span> </div>
-            <div class="row"> <div class="box helper"></div> <span>Helper Count: <span id="helperCount"></span> </span> </div>
-            <div class="row"> <div class="box helperBomb"></div> <span>HelperBomb Count: <span id="helperBombCount"></span> </span> </div>
+            <div class="row"> <div class="box empty" onclick="openModalWindow('gray','Void','Void-ը նույն դատարկ վանդակն է որի վրայով կարող են տեղաշարժվել բոլոր շարժվող պերսոնաժները')"></div> <span>Void Count: <span id="voidCount"></span> </span> </div>
+            <div class="row"> <div class="box grass" onclick="openModalWindow('green','Grass','Grass-ը իրենից ներակայացնում է խոտ որը բազմանում է ինչ-որ ինտերվալով')"></div> <span>Grass Count: <span id="grassCount"></span> </span> </div>
+            <div class="row"> <div class="box eater" onclick="openModalWindow('yellow','Eater','Eater-ը ուտում է իր արջև ընկած բոլոր խոտի օբյեկտներին')"></div> <span>Eater Count: <span id="eaterCount"></span> </span> </div>
+            <div class="row"> <div class="box predator" onclick="openModalWindow('black','Predator','Predator-ը ուտում է բոլոր պերսոնաժներին բացի ամենակերից և Hole-ից քանի որ նա ընկնում է վերջինիս մեջ չկարողանալով ուտել')"></div> <span>Predator Count: <span id="predatorCount"></span> </span> </div>
+            <div class="row"> <div class="box planter" onclick="openModalWindow('red','Grass Planter','Planter-ը հայտնվում է այն ժամանակ երբ որ խոտի քանակը լինում է տրված քանակից քիչ')"></div> <span>Planter Count: <span id="planterCount"></span> </span> </div>
+            <div class="row"> <div class="box omnivorous" onclick="openModalWindow('blue','Omnivorous','Omnivorous-ը ուտում է իր արջև ընկած բոլոր օբյեկտներին, նաև էներգիան սպառվելուն պես թողնում է իր ետեվից փոս (Hole) որի մեջ բոլոր օբյեկտները ընկնում են երբ գտնվում են մոտ')"></div> <span>Omnivorous Count: <span id="omnivorousCount"></span> </span> </div>
+            <div class="row"> <div class="box hole" onclick="openModalWindow('#555555','Hole','Hole-ը փոսը առաջանում է ամենակերի (Omnivorous) մահից (պայթյունից) հետո')"></div> <span>Hole Count: <span id="holeCount"></span> </span> </div>
+            <div class="row"> <div class="box helper" onclick="openModalWindow('orange','Eater Helper','Helper-ը տասը դատարկ վանդակը մեկ շարում է իր ետեվից պայթուցիկները որոնք պայթում են տրված ժամանակն անցնելուն պես թողնելով իրենց ետեվից մի քանի խոտակերների (Grass Eater)')"></div> <span>Helper Count: <span id="helperCount"></span> </span> </div>
+            <div class="row"> <div class="box helperBomb" onclick="openModalWindow('yellowgreen','Helper Bomb','Helper Bomb-երը հայտնվում են Eater Helper-ի օգնությամբ')"></div> <span>HelperBomb Count: <span id="helperBombCount"></span> </span> </div>
         </div>
 
         <div class="information-modal-window">
-            
+            <div class="flex">
+                <div class="person-color-box"></div>
+
+                <h1 class="person-name"></h1>
+
+                <div class="x">X</div>
+            </div>
+
+            <div class="column">
+                <p class="person-info"></p>
+            </div>
         </div>
         
         <!--SCRIPT-IMPORT-->

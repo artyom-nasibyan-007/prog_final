@@ -158,8 +158,6 @@ let timeout2 = setTimeout(function(){
     },10)
 },1500)
 
-
-
 setTimeout(function(){
     let int = setInterval(() => {
     if(eaterArr.length == 0 && grassArr.length != 0) {

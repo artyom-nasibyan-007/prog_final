@@ -98,3 +98,28 @@ function spawn(data) {
 function clearMatrix() {
     socket.emit("clear", "clean");
 }
+
+function openModalWindow(bgcolor,personname,personinfo) {
+
+    let 
+        infoWindow = document.querySelector(".information-modal-window"),
+        personColorDiv = document.querySelector(".person-color-box"),
+        personNameTag = document.querySelector(".person-name"),
+        personInfoTag = document.querySelector(".person-info");
+
+        infoWindow.style.visibility = "visible";
+        infoWindow.style.opacity = "100%";
+
+        personColorDiv.style.backgroundColor = bgcolor;
+        personNameTag.innerHTML = personname;
+        personInfoTag.innerHTML = personinfo;
+
+}
+
+document.querySelector(".x").addEventListener('click',() => {
+    let 
+        infoWindow = document.querySelector(".information-modal-window");
+
+    infoWindow.style.opacity = "0%";
+    infoWindow.style.visibility = "hidden";
+})
