@@ -20,6 +20,7 @@ function setup() {
             document.getElementById(id).innerHTML = count;
         }
 
+        changeCount("voidCount",data.voidCounter)
         changeCount("grassCount",data.grassCounter)
         changeCount("eaterCount",data.eaterCounter)
         changeCount("planterCount",data.planterCounter)
@@ -66,48 +67,34 @@ function setup() {
     
 }
 
-// function spawn(data) {
-//     if(data == "grass") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "eater") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "predator") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "planter") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "omnivorous") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "hole") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "helper") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else if(data == "helperBomb") {
-//         socket.on("connection",(server) => {
-//             server.emit("mobName", data);
-//         })
-//     }
-//     else {
-//         console.log("ERROR: SUCH MOB DOES NOT EXIST");
-//     }
-// }
+document.addEventListener('keydown', (e) => {
+    if(e.keyCode == 71) { //G key in keyboard spawn grass in random position
+        spawn("grass");
+    }
+    else if(e.keyCode == 69) { //E key in keyboard spawn grass in random position
+        spawn("eater");
+    }
+    else if(e.keyCode == 80) { //P key in keyboard spawn grass in random position
+        spawn("predator");
+    }
+    else if(e.keyCode == 70) { //F key in keyboard spawn grass in random position
+        spawn("planter");
+    }
+    else if(e.keyCode == 79) { //O key in keyboard spawn grass in random position
+        spawn("omnivorous");
+    }
+    else if(e.keyCode == 72) { //H key in keyboard spawn grass in random position
+        spawn("helper");
+    }
+    else if(e.keyCode == 67) { //C key in keyboard spawn grass in random position
+       clearMatrix();
+    }  
+})
+
+function spawn(data) {
+    socket.emit("mobName", data);
+}
+
+function clearMatrix() {
+    socket.emit("clear", "clean");
+}

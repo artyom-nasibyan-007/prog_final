@@ -15,7 +15,11 @@ spawn = {
     planter:1,
     omnivorous:1,
     helper:1
-};
+},
+matrixSize = {
+    x:50,
+    y:50
+}
 
 matrix = [];
 grassArr = [];
@@ -27,6 +31,7 @@ omnivorousArr = [];
 eaterHelperArr = [];
 helperBombArr = [];
 
+const { clear } = require("console");
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -39,10 +44,10 @@ server.listen(3050);
 
 function matrixGen() {
 
-    function autoSize(x,y) {
-        for(let i = 0;i < y;i++) {
+    function autoSize() {
+        for(let i = 0;i < matrixSize.y;i++) {
             matrix.push([])
-            for(let j = 0;j < x;j++) {
+            for(let j = 0;j < matrixSize.x;j++) {
                 matrix[i].push(0)
             }
         }
@@ -58,9 +63,9 @@ function matrixGen() {
         
         matrix[yRand][xRand] = 1;
     }
-
+    
     //EATER SPAWN
-
+    
     for(i = 0;i < spawn.eater;i++) {
         let
         xRand = Math.floor(Math.random() * matrix[0].length),
@@ -68,9 +73,9 @@ function matrixGen() {
         
         matrix[yRand][xRand] = 2;
     }
-
+    
     //PREDATOR SPAWN
-
+    
     for(i = 0;i < spawn.predator;i++) {
         let
         xRand = Math.floor(Math.random() * matrix[0].length),
@@ -78,20 +83,20 @@ function matrixGen() {
         
         matrix[yRand][xRand] = 3;
     }
-
+    
     //OMNIVOROUS SPAWN
-
+    
     for(i = 0;i < spawn.omnivorous;i++) {
-    let
-    xRand = Math.floor(Math.random() * matrix[0].length),
-    yRand = Math.floor(Math.random() * matrix.length);
+        let
+        xRand = Math.floor(Math.random() * matrix[0].length),
+        yRand = Math.floor(Math.random() * matrix.length);
         
-    matrix[yRand][xRand] = 5;
+        matrix[yRand][xRand] = 5;
     }
-
+    
     for(let y = 0;y < matrix.length;y++) {
         for(let x = 0;x < matrix[y].length;x++) {
-
+            
             if(matrix[y][x] == 1) {
                 let grass = new Grass(x,y);
                 grassArr.push(grass);
@@ -110,11 +115,11 @@ function matrixGen() {
             }
         }
     }
-
-let timeout1 = setTimeout(function(){
-    let int = setInterval(() => {            
-        if(grassArr.length <= 200) {
-            for(let n = 0;n < spawn.planter;n++) {         
+    
+    let timeout1 = setTimeout(function(){
+        let int = setInterval(() => {            
+            if(grassArr.length <= 200) {
+                for(let n = 0;n < spawn.planter;n++) {         
                 let
                 xRand = Math.floor(Math.random() * matrix[0].length),
                 yRand = Math.floor(Math.random() * matrix.length);
@@ -156,7 +161,7 @@ let timeout2 = setTimeout(function(){
 
 
 setTimeout(function(){
-let int = setInterval(() => {
+    let int = setInterval(() => {
     if(eaterArr.length == 0 && grassArr.length != 0) {
         console.log("Planters Won");
         clearInterval(int);
@@ -194,6 +199,7 @@ function game() {
 
     let sendData = {
         matrix: matrix,
+        voidCounter: (matrixSize.x * matrixSize.y) - (grassArr.length + eaterArr.length + predatorArr.length + omnivorousArr.length + planterArr.length + holeArr.length + eaterHelperArr.length + helperBombArr.length),
         grassCounter: grassArr.length,
         eaterCounter: eaterArr.length,
         predatorCounter: predatorArr.length,
@@ -207,55 +213,118 @@ function game() {
     io.sockets.emit("data", sendData);
 }
 
-setInterval(game, 400)
+setInterval(game, 100)
 
-// function spawnMob() {
-//     io.on("mobName",function(data) {
-//         console.log(data);
+function spawnMob() {
+    io.on("connection", (socket) => {
+        socket.on("mobName", (data) => {
+            if(data == "grass") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 1;
+    
+                let grass = new Grass(xRand,yRand);
+                grassArr.push(grass);
+            }
+            else if(data == "eater") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 2;
+    
+                let eater = new GrassEater(xRand,yRand);
+                eaterArr.push(eater);
+            }
+            else if(data == "predator") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 3;
+    
+                let predator = new Predator(xRand,yRand);
+                predatorArr.push(predator);
+            }
+            else if(data == "planter") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 4;
+    
+                let planter = new GrassPlanter(xRand,yRand);
+                planterArr.push(planter);
+            }
+            else if(data == "omnivorous") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 5;
+    
+                let omnivorous = new Omnivorous(xRand,yRand);
+                omnivorousArr.push(omnivorous);
+            }
+            else if(data == "helper") {
+                let
+                xRand = Math.floor(Math.random() * matrix[0].length),
+                yRand = Math.floor(Math.random() * matrix.length);
+                
+                matrix[yRand][xRand] = 6;
+    
+                let helper = new EaterHelper(xRand,yRand);
+                eaterHelperArr.push(helper);
+            }
+        })
+    })
+}
 
-//         if(data == "grass") {
-//             let
-//             xRand = Math.floor(Math.random() * matrix[0].length),
-//             yRand = Math.floor(Math.random() * matrix.length);
-            
-//             matrix[yRand][xRand] = 1;
+spawnMob();
 
-//             let grass = new Grass(xRand,yRand);
-//             grassArr.push(grass);
+let int;
 
-//             console.log(data);
-//         }
-//         else if(data == "eater") {
-//             let
-//             xRand = Math.floor(Math.random() * matrix[0].length),
-//             yRand = Math.floor(Math.random() * matrix.length);
-            
-//             matrix[yRand][xRand] = 2;
+function clearMatrix() {
+    io.on('connection',(socket) => {
+        socket.on("clear",(data) => {
+            if(data == "clean") {
 
-//             let eater = new GrassEater(xRand,yRand);
-//             eaterArr.push(eater);
+                clearMatrix();
 
-//             console.log(data);
-//         }
-//         else if(data == "predator") {
-            
-//         }
-//         else if(data == "planter") {
-            
-//         }
-//         else if(data == "omnivorous") {
-            
-//         }
-//         else if(data == "hole") {
-            
-//         }
-//         else if(data == "helper") {
-            
-//         }
-//         else if(data == "helperBomb") {
-            
-//         }
-//     })
-// }
+                matrix.length = null;
+                grassArr.length = null;
+                eaterArr.length = null;
+                predatorArr.length = null;
+                planterArr.length = null;
+                holeArr.length = null;
+                omnivorousArr.length = null;
+                eaterHelperArr.length = null;
+                helperBombArr.length = null;
 
-// setInterval(spawnMob,1);
+                for(let i = 0;i < matrixSize.y;i++) {
+                    matrix.push([])
+                    for(let j = 0;j < matrixSize.x;j++) {
+                        matrix[i].push(0)
+                    }
+                }
+
+                setTimeout(function() { clearInterval(int); }, 1000)
+
+                data = null;
+            }
+        })
+    })
+}
+
+
+function clearPlanters() { 
+    int = setInterval(
+        function(){ 
+            planterArr.length = null; for(let i = 0;i < matrixSize.y;i++) { for(let j = 0;j < matrixSize.x;j++) { if(matrix[i][j] == 4) matrix[i][j] = 0; }; };
+        }
+    )
+}
+
+clearMatrix();

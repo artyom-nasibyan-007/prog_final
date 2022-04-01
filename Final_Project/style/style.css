@@ -2,6 +2,7 @@
 *::before,
 *::after {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    user-select: none;
 }
 
 .game-info {
