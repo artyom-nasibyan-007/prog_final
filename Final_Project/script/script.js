@@ -154,3 +154,117 @@ modal2btn.addEventListener("click",() => {
     elem.style.visibility = "visible";
     elem.style.opacity = "100%";
 })
+
+let 
+weatherCount = 1,
+weather;
+
+window.onload = function() {
+    let weatherElem = document.getElementById("weather");
+
+    if(weatherCount == 1) {
+        weather = "Spring";
+        weatherElem.innerHTML = weather;
+
+        socket.emit("weather",weather);
+    }
+    else if(weatherCount == 2) {
+        weather = "Summer";
+        weatherElem.innerHTML = weather;
+
+        socket.emit("weather",weather);
+    }
+    else if(weatherCount == 3) {
+        weather = "Autumn";
+        weatherElem.innerHTML = weather;
+
+        socket.emit("weather",weather);
+    }
+    else if(weatherCount == 4) {
+        weather = "Winter";
+        weatherElem.innerHTML = weather;
+
+        socket.emit("weather",weather);
+
+        weatherCount = 1;
+    }
+}
+
+document.getElementById("changeWeather").addEventListener('click',weatherChangeOnclick)
+
+socket.on("matrixData", weatherChangeOnclick);
+
+function weatherChangeOnclick(data) {
+    var
+    matrix = [];
+    
+    let 
+    weatherElem = document.getElementById("weather");
+        
+    matrix = data;
+    
+    weatherCount++;
+        
+    console.log(matrix);
+
+    if(weatherCount == 1) {
+        weather = "Spring";
+        weatherElem.innerHTML = weather;
+
+        socket.emit("weather",weather);
+    }
+    else if(weatherCount == 2) {
+        weather = "Summer";
+        weatherElem.innerHTML = weather;
+    
+        for(let y = 0; y < matrix.length;y++) {
+            for(let x = 0; x < matrix[y].length;x++) {
+                if(matrix[y][x] == 1) {
+                    fill("yellowgreen");
+                }
+                else if(matrix[y][x] == 2) {
+                    fill("#acd106")
+                }
+                else if(matrix[y][x] == 3) {
+                    fill("#260d54")
+                }
+                else if(matrix[y][x] == 4) {
+                    fill("#662e0b");
+                }
+                else if(matrix[y][x] == 5) {
+                    fill("#5b0b66");
+                }
+                else if(matrix[y][x] == 6) {
+                    fill("#000000");
+                }
+                    else if(matrix[y][x] == 7) {
+                    fill("#540202");
+                }
+                else if(matrix[y][x] == 8) {
+                    fill("#754235");
+                }
+                else if(matrix[y][x] == 0) {
+                    fill("gray")
+                }
+                noStroke();
+                rect(x * block, y * block, block, block);
+            }
+        }
+    
+        socket.emit("weather",weather);
+        }
+        else if(weatherCount == 3) {
+            weather = "Autumn";
+            weatherElem.innerHTML = weather;
+    
+            socket.emit("weather",weather);
+        }
+        else if(weatherCount == 4) {
+            weather = "Winter";
+            weatherElem.innerHTML = weather;
+    
+            socket.emit("weather",weather);
+    
+            weatherCount = 0;
+        }
+}

@@ -156,7 +156,7 @@ let timeout2 = setTimeout(function(){
             }
         }
     },10)
-},1500)
+},4500)
 
 setTimeout(function(){
     let int = setInterval(() => {
@@ -289,7 +289,7 @@ function clearMatrix() {
         socket.on("clear",(data) => {
             if(data == "clean") {
 
-                clearMatrix();
+                clearPlanters();
 
                 matrix.length = null;
                 grassArr.length = null;
@@ -316,7 +316,6 @@ function clearMatrix() {
     })
 }
 
-
 function clearPlanters() { 
     int = setInterval(
         function(){ 
@@ -326,3 +325,24 @@ function clearPlanters() {
 }
 
 clearMatrix();
+
+function weatherChanging() {
+    io.on("connection",(socket) => {
+        socket.on("weather",(data) => {
+            if(data == "Spring") {
+
+            }
+            else if(data == "Summer") {
+
+            }
+            else if(data == "Autumn") {
+
+            }
+            else if(data == "Winter") {
+
+            }
+        })
+    })
+}
+
+io.sockets.emit("matrixData", matrix);

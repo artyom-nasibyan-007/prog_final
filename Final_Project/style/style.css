@@ -268,3 +268,14 @@ body {
     font-size: 25px;
     border-radius: 10px;
 }
+
+.btn-info .column button:not(:last-child :nth-child(2)) {
+    margin-bottom: 20px;
+}
+
+#weather {
+    color: white;
+    width: inherit;
+    height: auto;
+    text-align: center;
+}
