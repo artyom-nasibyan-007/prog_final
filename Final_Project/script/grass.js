@@ -1,7 +1,7 @@
 var LivingCreature = require("./livingCreature");
 var random = require("./random.js");
 
-module.exports = class Grass extends LivingCreature{
+module.exports = class Grass extends LivingCreature {
     mul() {
         let 
         empty = this.chooseCell(0),
@@ -9,7 +9,7 @@ module.exports = class Grass extends LivingCreature{
 
         this.multiply++;
 
-        if(randomEmpty && this.multiply > 2) {
+        if(randomEmpty && this.multiply > this.grassMaxMultiply) {
             let 
             x = randomEmpty[0],
             y = randomEmpty[1];
@@ -20,5 +20,9 @@ module.exports = class Grass extends LivingCreature{
             this.multiply = 0;
         }
         
+    }
+
+    grassSlowing(n) {
+        this.grassMaxMultiply = n;
     }
 }

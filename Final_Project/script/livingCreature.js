@@ -3,6 +3,8 @@ module.exports = class LivingCreature {
         this.x = x;
         this.y = y;
         this.multiply = 0;
+        this.grassMaxMultiply = 2;
+        this.energyForMulling = 16;
 
         this.bombCount = 0;
 
@@ -24,6 +26,7 @@ module.exports = class LivingCreature {
        ];
  
     }
+
     chooseCell(ch) {
         var found = [];
         for (var i in this.directions) {

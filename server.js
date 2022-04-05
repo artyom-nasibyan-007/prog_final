@@ -8,6 +8,7 @@ EaterHelper = require("./Final_Project/script/eaterHelper"),
 LivingCreature = require("./Final_Project/script/livingCreature"),
 Omnivorous = require("./Final_Project/script/omnivorous"),
 Predator = require("./Final_Project/script/predator"),
+intervalSpeed = 100,
 spawn = {
     grass:40,
     eater:10,
@@ -158,19 +159,6 @@ let timeout2 = setTimeout(function(){
     },10)
 },4500)
 
-setTimeout(function(){
-    let int = setInterval(() => {
-    if(eaterArr.length == 0 && grassArr.length != 0) {
-        console.log("Planters Won");
-        clearInterval(int);
-    }
-    else if(grassArr.length == 0 && eaterArr.length != 0 && planterArr == 0) {
-        console.log("Eaters Won");
-        clearInterval(int);
-    }    
-},1)
-},200)
-
 }
 
 matrixGen()
@@ -211,7 +199,7 @@ function game() {
     io.sockets.emit("data", sendData);
 }
 
-setInterval(game, 100)
+setInterval(game, intervalSpeed)
 
 function spawnMob() {
     io.on("connection", (socket) => {
@@ -326,23 +314,34 @@ function clearPlanters() {
 
 clearMatrix();
 
+let interval;
+
 function weatherChanging() {
     io.on("connection",(socket) => {
         socket.on("weather",(data) => {
-            if(data == "Spring") {
-
+            if(data === "spring") {
+                clearInterval(interval);
             }
-            else if(data == "Summer") {
-
+            else if(data === "summer") {
+                console.log(data);
             }
-            else if(data == "Autumn") {
-
+            else if(data === "autumn") {
+                console.log(data);
             }
-            else if(data == "Winter") {
-
+            else if(data === "winter") {
+                interval = setInterval(() => {
+                    for(let i in grassArr) {
+                        grassArr[i].grassSlowing(5);
+                    }
+                    for(let i in eaterArr) {
+                        eaterArr[i].eaterSlowing();
+                    }
+                },100)
             }
         })
     })
 }
+
+weatherChanging();
 
 io.sockets.emit("matrixData", matrix);

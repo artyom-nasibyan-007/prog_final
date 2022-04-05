@@ -77,7 +77,7 @@ module.exports = class HelperBomb {
 
                 this.die();
             }
-        },100)
+        },1000)
         this.energy = 20;
     }
 
