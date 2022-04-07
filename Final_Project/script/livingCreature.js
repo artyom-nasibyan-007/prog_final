@@ -9,7 +9,7 @@ module.exports = class LivingCreature {
         this.bombCount = 0;
 
         this.eaterEnergy = 8;
-        this.planterEnergy = 10;
+        this.planterEnergy = 30;
         this.omnivorousEnergy = 35;
         this.predatorEnergy = 60;
         this.helperEnergy = 60;

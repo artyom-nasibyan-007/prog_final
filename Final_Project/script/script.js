@@ -189,130 +189,133 @@ function setup() {
                 noStroke();
             }
         }
-
-        //CHANGING-PERSON-HTML-ELEMENT-COLORS
-
-        let 
-        grassHtmlElem = document.querySelector(".box.grass"),
-        eaterHtmlElem = document.querySelector(".box.eater"),
-        predatorHtmlElem = document.querySelector(".box.predator"),
-        planterHtmlElem = document.querySelector(".box.planter"),
-        omnivorousHtmlElem = document.querySelector(".box.omnivorous"),
-        holeHtmlElem = document.querySelector(".box.hole"),
-        helperHtmlElem = document.querySelector(".box.helper"),
-        helperBombHtmlElem = document.querySelector(".box.helperBomb");
-
-        setInterval(() => {
-            for(let y = 0; y < matrix.length;y++) {
-                for(let x = 0; x < matrix[y].length;x++) {
-
-                    // 1 - GRASS-ELEM
-
-                    if (matrix[y][x] == 1) {
-
-                        let clr;
-
-                        if(weather == "spring") clr = "green";
-
-                        else if(weather == "summer") clr = "#89E800";
-    
-                        else if(weather == "autumn") clr = "#B9DB04";
-    
-                        else if(weather == "winter") clr = "#00D199";  
-
-                        grassHtmlElem.style.backgroundColor = clr;
-                    }
-
-                    //2 - EATER-ELEM
-
-                    if (matrix[y][x] == 2) {
-                        
-                        let clr;
-
-                        if(weather == "spring") clr = "yellow";
-                    
-                        else if(weather == "summer") clr = "#FFCE00";
-                        
-                        else if(weather == "autumn") clr = "#8C7A00"; 
-                        
-                        else if(weather == "winter") clr = "#FDFF61";
-
-                        eaterHtmlElem.style.backgroundColor = clr;
-                    }
-
-                    //3 - PREDATOR-ELEM
-
-                    if (matrix[y][x] == 3) {
-
-                        predatorHtmlElem.style.backgroundColor = "black";
-                    }
-
-                    //4 - PLANTER-ELEM
-
-                    if (matrix[y][x] == 4) {
-                        
-                        let clr;
-
-                        if(weather == "spring") clr = "red";
-
-                        else if(weather == "summer") clr = "#FF5B2E";
-                 
-                        else if(weather == "autumn") clr = "#701800";
-                        
-                        else if(weather == "winter") clr = "#6B2A18";
-
-                        planterHtmlElem.style.backgroundColor = clr;
-                    }
-                    
-                    //5 - OMNIVOROUS-ELEM
-
-                    if (matrix[y][x] == 5) {
-
-                        omnivorousHtmlElem.style.backgroundColor = "blue";
-                    }
-
-                    //6 - HOLE-ELEM
-
-                    if (matrix[y][x] == 6) {
-
-                        holeHtmlElem.style.backgroundColor = "#333";
-                    }
-
-                    //7 - EATER-HELPER-ELEM
-
-                    if (matrix[y][x] == 7) {
-
-                        let clr;
-
-                        if(weather == "spring") clr = "#CD32BB";
-
-                        else if(weather == "summer") clr = "#FF4AEA";
-    
-                        else if(weather == "autumn") clr = "#800071";
-    
-                        else if(weather == "winter") clr = "#4A0842";
-
-                        helperHtmlElem.style.backgroundColor = clr;
-                    }
-
-                    //8 - HELPER-BOMB-ELEM
-
-                    if (matrix[y][x] == 8) {
-
-                        helperBombHtmlElem.style.backgroundColor = "#024040";
-                    }
-
-                    noStroke();
-                }
-            }
-        })
     }
     
 }
 
 //-----------------------------------------------------------------------------
 
+socket.on("matrix", changingColors);
 
+function changingColors(matrix) { //Changing Weather Html Element Colors
+    
+    //CHANGING-PERSON-HTML-ELEMENT-COLORS
+
+    let 
+    grassHtmlElem = document.querySelector(".box.grass"),
+    eaterHtmlElem = document.querySelector(".box.eater"),
+    predatorHtmlElem = document.querySelector(".box.predator"),
+    planterHtmlElem = document.querySelector(".box.planter"),
+    omnivorousHtmlElem = document.querySelector(".box.omnivorous"),
+    holeHtmlElem = document.querySelector(".box.hole"),
+    helperHtmlElem = document.querySelector(".box.helper"),
+    helperBombHtmlElem = document.querySelector(".box.helperBomb");
+
+    setInterval(() => {
+        for(let y = 0; y < matrix.length;y++) {
+            for(let x = 0; x < matrix[y].length;x++) {
+
+                // 1 - GRASS-ELEM
+
+                if (matrix[y][x] == 1) {
+
+                    let clr;
+
+                    if(weather == "spring") clr = "green";
+
+                    else if(weather == "summer") clr = "#89E800";
+
+                    else if(weather == "autumn") clr = "#B9DB04";
+
+                    else if(weather == "winter") clr = "#00D199";  
+
+                    grassHtmlElem.style.backgroundColor = clr;
+                }
+
+                //2 - EATER-ELEM
+
+                if (matrix[y][x] == 2) {
+                    
+                    let clr;
+
+                    if(weather == "spring") clr = "yellow";
+                
+                    else if(weather == "summer") clr = "#FFCE00";
+                    
+                    else if(weather == "autumn") clr = "#8C7A00"; 
+                    
+                    else if(weather == "winter") clr = "#FDFF61";
+
+                    eaterHtmlElem.style.backgroundColor = clr;
+                }
+
+                //3 - PREDATOR-ELEM
+
+                if (matrix[y][x] == 3) {
+
+                    predatorHtmlElem.style.backgroundColor = "black";
+                }
+
+                //4 - PLANTER-ELEM
+
+                if (matrix[y][x] == 4) {
+                    
+                    let clr;
+
+                    if(weather == "spring") clr = "red";
+
+                    else if(weather == "summer") clr = "#FF5B2E";
+             
+                    else if(weather == "autumn") clr = "#701800";
+                    
+                    else if(weather == "winter") clr = "#6B2A18";
+
+                    planterHtmlElem.style.backgroundColor = clr;
+                }
+                
+                //5 - OMNIVOROUS-ELEM
+
+                if (matrix[y][x] == 5) {
+
+                    omnivorousHtmlElem.style.backgroundColor = "blue";
+                }
+
+                //6 - HOLE-ELEM
+
+                if (matrix[y][x] == 6) {
+
+                    holeHtmlElem.style.backgroundColor = "#333";
+                }
+
+                //7 - EATER-HELPER-ELEM
+
+                if (matrix[y][x] == 7) {
+
+                    let clr;
+
+                    if(weather == "spring") clr = "#CD32BB";
+
+                    else if(weather == "summer") clr = "#FF4AEA";
+
+                    else if(weather == "autumn") clr = "#800071";
+
+                    else if(weather == "winter") clr = "#4A0842";
+
+                    helperHtmlElem.style.backgroundColor = clr;
+                }
+
+                //8 - HELPER-BOMB-ELEM
+
+                if (matrix[y][x] == 8) {
+
+                    helperBombHtmlElem.style.backgroundColor = "#024040";
+                }
+            }
+        }
+    },1)
+}
+
+changingColors();
 
 document.addEventListener('keydown', (e) => {
     if(e.keyCode == 71) { //G key in keyboard spawn grass in random position

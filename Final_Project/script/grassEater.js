@@ -63,7 +63,7 @@ module.exports = class GrassEater extends LivingCreature {
             holeCells = this.chooseCell(6),
             newHole = random(holeCells);
 
-            if (newHole && this.eaterEnergy >= 0) {
+            if (newHole && this.eaterEnergy) {
                 matrix[this.y][this.x] = 0;
                 for (var i in eaterArr) {
                     if (this.x == eaterArr[i].x && this.y == eaterArr[i].y) {
@@ -83,7 +83,7 @@ module.exports = class GrassEater extends LivingCreature {
             this.y = newY;
             for (var i in grassArr) {
                 if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                    grassArr.splice(i, 3);
+                    grassArr.splice(i, 2);
                     break;
                 }
             }
@@ -101,9 +101,8 @@ module.exports = class GrassEater extends LivingCreature {
 
     }
 
-    eaterSlowing() {
-        this.energyForMulling = 60;
-        this.eaterEnergy = 4;
+    eaterSlowing(n) {
+        this.energyForMulling = n;
     }
 
     die() {

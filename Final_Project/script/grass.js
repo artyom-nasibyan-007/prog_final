@@ -22,7 +22,7 @@ module.exports = class Grass extends LivingCreature {
         
     }
 
-    grassSlowing(n) {
+    grassChangeSpeed(n) {
         this.grassMaxMultiply = n;
     }
 }

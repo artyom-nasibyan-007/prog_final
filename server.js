@@ -8,7 +8,6 @@ EaterHelper = require("./Final_Project/script/eaterHelper"),
 LivingCreature = require("./Final_Project/script/livingCreature"),
 Omnivorous = require("./Final_Project/script/omnivorous"),
 Predator = require("./Final_Project/script/predator"),
-intervalSpeed = 100,
 spawn = {
     grass:40,
     eater:10,
@@ -182,6 +181,8 @@ function game() {
     for(let i in eaterHelperArr) {
         eaterHelperArr[i].move();
     }
+    
+    io.sockets.emit("matrix", matrix);
 
     let sendData = {
         matrix: matrix,
@@ -199,7 +200,7 @@ function game() {
     io.sockets.emit("data", sendData);
 }
 
-setInterval(game, intervalSpeed)
+setInterval(game, 100)
 
 function spawnMob() {
     io.on("connection", (socket) => {
@@ -314,29 +315,40 @@ function clearPlanters() {
 
 clearMatrix();
 
-let interval;
+let 
+interval1,interval2;
 
 function weatherChanging() {
     io.on("connection",(socket) => {
         socket.on("weather",(data) => {
             if(data === "spring") {
-                clearInterval(interval);
+                clearInterval(interval2);
             }
             else if(data === "summer") {
-                console.log(data);
+                interval1 = setInterval(() => {
+                    for(let i in grassArr) {
+                        grassArr[i].grassChangeSpeed(3);
+                    }
+                })
             }
             else if(data === "autumn") {
-                console.log(data);
+                null
             }
             else if(data === "winter") {
-                interval = setInterval(() => {
+
+                clearInterval(interval1);
+
+                interval2 = setInterval(() => {
+                    //GRASS-SLOWING
                     for(let i in grassArr) {
-                        grassArr[i].grassSlowing(5);
+                        grassArr[i].grassChangeSpeed(7);
                     }
+                    //EATER-SLOWING
                     for(let i in eaterArr) {
-                        eaterArr[i].eaterSlowing();
+                        eaterArr[i].eaterSlowing(50);
                     }
                 },100)
+
             }
         })
     })
